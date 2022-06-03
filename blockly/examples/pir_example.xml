@@ -1,0 +1,148 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="serial_setup" id="eCHmnZlFTyF~tEOqBKP#" x="78" y="19">
+    <field name="SERIAL_ID">Serial</field>
+    <field name="SPEED">9600</field>
+  </block>
+  <block type="arduino_functions" id="MTQe^ew!@AB)tii?*DS[" x="82" y="55">
+    <statement name="SETUP_FUNC">
+      <block type="variables_set" id="PgyJQ~Z7/n4|tc.Mau!a">
+        <field name="VAR">PIR_STATE</field>
+        <value name="VALUE">
+          <block type="io_highlow" id="cCy,Ov{8p;8YRZM}J!z4">
+            <field name="STATE">LOW</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <statement name="LOOP_FUNC">
+      <block type="variables_set" id="/|aPIZaXEB)aCL9};-}?">
+        <field name="VAR">VALUE</field>
+        <value name="VALUE">
+          <block type="io_digitalread" id="B94up/sSTi28s[Icw=zB">
+            <field name="PIN">2</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_if" id="LavI3CCGMP3g1K(yJeR1">
+            <mutation else="1"></mutation>
+            <value name="IF0">
+              <block type="logic_compare" id="-6Xaekcu/2;!u,NZ|xTz">
+                <field name="OP">EQ</field>
+                <value name="A">
+                  <block type="variables_get" id="1]aVzXAW:p?T^=e?`r)(">
+                    <field name="VAR">VALUE</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="io_highlow" id="+9WCYMHt5xY!j,VQO,{b">
+                    <field name="STATE">HIGH</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="io_builtin_led" id="*lFz_f2)N1x44%9!H%.M">
+                <field name="BUILT_IN_LED">13</field>
+                <value name="STATE">
+                  <block type="io_highlow" id="ezU~ZnDnC3Ve;``q]))V">
+                    <field name="STATE">HIGH</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_if" id="awGVUJAA7ihxfhE}2%qA">
+                    <value name="IF0">
+                      <block type="logic_compare" id=",D^3[4Q.{,@Wf}=J.-f#">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="variables_get" id="s~G+u:+5arR7INP8oK^b">
+                            <field name="VAR">PIR_STATE</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="io_highlow" id="UnTU[Gj9qXygOv=EXJir">
+                            <field name="STATE">LOW</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="serial_print" id="w}hJ`#L}T,5AQ|}3fOs3">
+                        <field name="SERIAL_ID">Serial</field>
+                        <field name="NEW_LINE">TRUE</field>
+                        <value name="CONTENT">
+                          <block type="text" id="f0UA(^-#maQ~iD6rBJ[P">
+                            <field name="TEXT">Motion has been detected!</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="variables_set" id="-{cqtt8F#9vD?LioJRAB">
+                            <field name="VAR">PIR_STATE</field>
+                            <value name="VALUE">
+                              <block type="io_highlow" id=".e,g[tdz7@dm*lX]7Gv4">
+                                <field name="STATE">HIGH</field>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <statement name="ELSE">
+              <block type="io_builtin_led" id="-),pI_e[pn?zvrtej_+n">
+                <field name="BUILT_IN_LED">13</field>
+                <value name="STATE">
+                  <block type="io_highlow" id="E4rU8;MWfH-S04k#P4ig">
+                    <field name="STATE">LOW</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_if" id="T*?v0Q*R`{Ctv(P%N%|7">
+                    <value name="IF0">
+                      <block type="logic_compare" id="``%7E87m:a5+Y=2}`de)">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="variables_get" id="r0hN,.J?]oD%-OVmv+nN">
+                            <field name="VAR">PIR_STATE</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="io_highlow" id="v95T@}B1r|ay]2H=M)0Y">
+                            <field name="STATE">HIGH</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="serial_print" id="xA+0rX.g[V0)E*eQZME~">
+                        <field name="SERIAL_ID">Serial</field>
+                        <field name="NEW_LINE">TRUE</field>
+                        <value name="CONTENT">
+                          <block type="text" id=")w-tznEa{FS/VN]r;Cw#">
+                            <field name="TEXT">Motion has been stopped!</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="variables_set" id=")pJw%gJP?[(`%koQs~/:">
+                            <field name="VAR">PIR_STATE</field>
+                            <value name="VALUE">
+                              <block type="io_highlow" id="Ekn7-aD@GjX}aY!UPG+:">
+                                <field name="STATE">LOW</field>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

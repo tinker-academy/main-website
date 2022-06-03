@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+  <title>Arduino Codes</title>
+</head>
+<body>
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+      Arduino Codes
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  
+<table  id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+  <thead> 
+<tr>
+<td>Components</td>
+<td>Project</td>
+<td>Author</td>
+<td>Circuit Diagram</td>
+<td>Code Link</td>
+</tr>
+  </thead>
+<tbody>
+<tr>
+<td>Ultrasonic,I2C LCD 16X2 </td>
+<td>Height Mesurement</td>
+<td>Dhruv Saidava</td>
+<td>https://i2.wp.com/surtrtech.com/wp-content/uploads/2018/01/09782-3.png?ssl=1</td>
+<td>https://create.arduino.cc/projecthub/Arnov_Sharma_makes/ultrasonic-sensor-with-lcd-i2c-dc16e9</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('tr').each(function(){
+      $(this).find('td').each(function(){
+        var  t = $(this).text().replace(/\s+|\t/g,"")
+      if( t.includes('https:')){
+          $(this).html("<a href='"+t+"' class='btn btn-primary' target='_blank'>open</a>")
+        }else if(t.includes('http:') ){
+          $(this).html("<a href='"+t+"' class='btn btn-success' target='_blank'>open</a>")
+        }
+      })
+    })
+    $('#example').DataTable();
+});
+</script>
+
+
+<br>
+
+<center>Powered by Tinkering India</center>  
+</body>
+</html>
